@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import { UserRow } from "../AppMolecules";
-import { User } from "../shared/Types";
+import { User } from "../shared";
+
+import "./UsersContainer.css";
 
 const UsersContainer: FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -26,7 +28,7 @@ const UsersContainer: FC = () => {
       role={user.role}
     />
   ));
-  return <>{Mapper}</>;
+  return <div className="container">{Mapper}</div>;
 };
 
 export default UsersContainer;

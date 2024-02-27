@@ -1,15 +1,19 @@
 import React, { FC } from "react";
 import { User } from "../../shared/Types";
+import "./UserRow.css";
 
 const UserCell: FC<{ val: string }> = ({ val }) => <p>{val}</p>;
 
 const UserRow: FC<User> = ({ name, id, email, role }) => {
   return (
-    <div>
+    <div className="row">
       <UserCell val={name} />
       <UserCell val={email} />
       <UserCell val={role} />
-      <button>edit</button>
+      <div>
+        <span className="material-symbols-outlined">edit</span>
+        <span className="material-symbols-outlined">delete</span>
+      </div>
     </div>
   );
 };

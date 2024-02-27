@@ -1,7 +1,7 @@
-import { UsersContainer } from "./components";
+import { AppContext } from "./AppContext";
 
 function App() {
-  return <UsersContainer />;
+  return <AppContext />;
 }
 
 export default App;

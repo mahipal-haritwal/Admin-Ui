@@ -1,0 +1,18 @@
+.round-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid rgb(220, 219, 219);
+  transition: all 0.3s ease-in-out;
+}
+
+.round-btn:hover {
+  color: white;
+  background-color: red;
+  transition: all 0.3s ease-in-out;
+}

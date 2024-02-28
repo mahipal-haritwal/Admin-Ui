@@ -13,6 +13,13 @@
   border-width: 0 0 0.3px 0;
   border-color: rgb(223, 220, 220);
   border-style: solid;
+  transition: all 0.3s ease-in-out;
+}
+
+.row:hover {
+  color: white;
+  background-color: rgb(254, 195, 254);
+  transition: all 0.3s ease-in-out;
 }
 
 .flex {

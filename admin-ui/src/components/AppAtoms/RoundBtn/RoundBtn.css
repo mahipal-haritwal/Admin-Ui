@@ -16,3 +16,16 @@
   background-color: red;
   transition: all 0.3s ease-in-out;
 }
+
+.disabled,
+.disabled:hover {
+  cursor: not-allowed;
+  background-color: transparent;
+  color: black;
+}
+
+.in-focus {
+  color: white;
+  background-color: red;
+  transition: all 0.3s ease-in-out;
+}

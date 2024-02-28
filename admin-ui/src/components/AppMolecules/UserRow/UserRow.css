@@ -17,9 +17,10 @@
 }
 
 .row:hover {
+  font-weight: 500;
   color: white;
   background-color: rgb(254, 195, 254);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in;
 }
 
 .header {

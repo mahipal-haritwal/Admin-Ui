@@ -1,4 +1,3 @@
-import React from "react";
 import { RoundBtn } from "../AppAtoms";
 
 import "./Pagination.css";
@@ -27,10 +26,10 @@ const Pagination = () => {
   return (
     <div className="pagination">
       <RoundBtn onClick={() => console.log("clicked", "d")} isSelected={false}>
-        {doubleStepForward}
+        {doubleStepBack}
       </RoundBtn>
       <RoundBtn onClick={() => console.log("clicked", "s")} isSelected={false}>
-        {stepForward}
+        {stepBack}
       </RoundBtn>
       {pages.map((val) => (
         <RoundBtn
@@ -41,10 +40,10 @@ const Pagination = () => {
         </RoundBtn>
       ))}
       <RoundBtn onClick={() => console.log("clicked", "b")} isSelected={false}>
-        {stepBack}
+        {stepForward}
       </RoundBtn>
       <RoundBtn onClick={() => console.log("clicked", "bb")} isSelected={false}>
-        {doubleStepBack}
+        {doubleStepForward}
       </RoundBtn>
     </div>
   );

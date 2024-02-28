@@ -1,8 +1,8 @@
 import { FC, useContext } from "react";
 import { UserCell, UserRow } from "../AppMolecules";
 import { AppContextP } from "../../AppContext/AppContext";
-import "./UsersContainer.css";
 import { Checkbox, DeleteBtn, EditBtn } from "../AppAtoms";
+import "./UsersContainer.css";
 
 const Header = () => (
   <UserRow isHeader>
@@ -13,6 +13,7 @@ const Header = () => (
     <UserCell val="Actions" />
   </UserRow>
 );
+
 const UsersContainer: FC = () => {
   const { data: users } = useContext(AppContextP);
 

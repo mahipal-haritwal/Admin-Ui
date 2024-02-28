@@ -1,21 +1,37 @@
 import { FC, useContext } from "react";
-import { UserRow } from "../AppMolecules";
+import { UserCell, UserRow } from "../AppMolecules";
 import { AppContextP } from "../../AppContext/AppContext";
 import "./UsersContainer.css";
+import { DeleteBtn, EditBtn } from "../AppAtoms";
 
+const Header = () => (
+  <UserRow isHeader>
+    <UserCell val="Name" />
+    <UserCell val="Email" />
+    <UserCell val="Role" />
+    <UserCell val="Actions" />
+  </UserRow>
+);
 const UsersContainer: FC = () => {
   const { data: users } = useContext(AppContextP);
 
-  const Mapper = users.map((user) => (
-    <UserRow
-      id={user.id}
-      key={user.id}
-      name={user.name}
-      email={user.email}
-      role={user.role}
-    />
+  const Mapper = users.map(({ id, name, email, role }) => (
+    <UserRow>
+      <UserCell val={name} />
+      <UserCell val={email} />
+      <UserCell val={role} />
+      <div className="flex">
+        <EditBtn onClick={() => {}} />
+        <DeleteBtn onClick={() => {}} />
+      </div>
+    </UserRow>
   ));
-  return <div className="container">{Mapper}</div>;
+  return (
+    <div className="container">
+      <Header />
+      {Mapper}
+    </div>
+  );
 };
 
 export default UsersContainer;

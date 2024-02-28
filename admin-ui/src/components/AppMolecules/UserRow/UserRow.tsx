@@ -1,26 +1,13 @@
-import React, { FC } from "react";
-import { User } from "../../shared/Types";
+import { FC, ReactNode } from "react";
 import "./UserRow.css";
-import { DeleteBtn, EditBtn } from "../../AppAtoms";
 
-const UserCell: FC<{ val: string }> = ({ val }) => (
-  <p style={{ background: "transparent" }} className="cell">
-    {val}
-  </p>
-);
+const UserRow: FC<{ isHeader?: boolean; children: ReactNode }> = ({
+  isHeader,
+  children,
+}) => {
+  const className = `row ${isHeader ? "header" : ""}`;
 
-const UserRow: FC<User> = ({ name, id, email, role }) => {
-  return (
-    <div className="row">
-      <UserCell val={name} />
-      <UserCell val={email} />
-      <UserCell val={role} />
-      <div className="flex">
-        <EditBtn onClick={() => {}} />
-        <DeleteBtn onClick={() => {}} />
-      </div>
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 };
 
 export default UserRow;

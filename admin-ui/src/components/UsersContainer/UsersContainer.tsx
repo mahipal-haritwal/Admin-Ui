@@ -2,10 +2,11 @@ import { FC, useContext } from "react";
 import { UserCell, UserRow } from "../AppMolecules";
 import { AppContextP } from "../../AppContext/AppContext";
 import "./UsersContainer.css";
-import { DeleteBtn, EditBtn } from "../AppAtoms";
+import { Checkbox, DeleteBtn, EditBtn } from "../AppAtoms";
 
 const Header = () => (
   <UserRow isHeader>
+    <Checkbox />
     <UserCell val="Name" />
     <UserCell val="Email" />
     <UserCell val="Role" />
@@ -17,6 +18,7 @@ const UsersContainer: FC = () => {
 
   const Mapper = users.map(({ id, name, email, role }) => (
     <UserRow>
+      <Checkbox />
       <UserCell val={name} />
       <UserCell val={email} />
       <UserCell val={role} />

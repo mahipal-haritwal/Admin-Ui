@@ -21,7 +21,7 @@
 .disabled:hover {
   cursor: not-allowed;
   background-color: transparent;
-  color: black;
+  color: rgb(230, 230, 230);
 }
 
 .in-focus {

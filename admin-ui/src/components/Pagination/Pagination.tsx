@@ -4,10 +4,10 @@ import { RoundBtn } from "../AppAtoms";
 import "./Pagination.css";
 import { AppContextP } from "../../AppContext/AppContext";
 
-const pages = [1, 2, 3, 4, 5];
 const Pagination: FC<{
   pageSetter: (pageNo: number, move: number) => void;
-}> = ({ pageSetter }) => {
+  pages: number[];
+}> = ({ pageSetter, pages }) => {
   const { currPage } = useContext(AppContextP);
 
   const stepForward = (
@@ -29,6 +29,8 @@ const Pagination: FC<{
       keyboard_double_arrow_left
     </span>
   );
+
+  const lastPage = pages[pages.length - 1];
 
   return (
     <div className="pagination">
@@ -57,14 +59,14 @@ const Pagination: FC<{
       ))}
       <RoundBtn
         onClick={() => pageSetter(0, 1)}
-        disabled={currPage + 1 > 5}
+        disabled={currPage + 1 > lastPage}
         isSelected={false}
       >
         {stepForward}
       </RoundBtn>
       <RoundBtn
         onClick={() => pageSetter(0, 2)}
-        disabled={currPage + 1 > 5}
+        disabled={currPage + 2 > lastPage}
         isSelected={false}
       >
         {doubleStepForward}
@@ -74,3 +76,6 @@ const Pagination: FC<{
 };
 
 export default Pagination;
+
+// 20000+6000 , 10000, 10000, 41600, 8000,4000,7000,7000,
+//emis => 11000, 4000,5000

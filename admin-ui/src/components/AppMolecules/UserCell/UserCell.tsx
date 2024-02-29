@@ -1,9 +1,8 @@
 import { FC } from "react";
+import "./UserCell.css";
 
 const UserCell: FC<{ val: string }> = ({ val }) => (
-  <p style={{ background: "transparent" }} className="cell">
-    {val}
-  </p>
+  <p className="cell">{val}</p>
 );
 
 export default UserCell;

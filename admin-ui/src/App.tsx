@@ -1,7 +1,11 @@
 import { AppContext } from "./AppContext";
 
 function App() {
-  return <AppContext />;
+  return (
+    <>
+      <AppContext />
+    </>
+  );
 }
 
 export default App;

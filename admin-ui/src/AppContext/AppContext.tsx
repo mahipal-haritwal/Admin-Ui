@@ -157,13 +157,9 @@ const AppContext = () => {
     <AppContextP.Provider value={val}>
       <div
         style={{
-          height: "100%",
-          boxSizing: "border-box",
-          overflow: "hidden",
           padding: "10px",
         }}
       >
-        <h3>Admin UI</h3>
         <SearchComponent onSearch={filterData} />
         <UsersContainer
           selectValues={onSelection}

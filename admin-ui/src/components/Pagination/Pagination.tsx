@@ -36,7 +36,7 @@ const Pagination: FC<{
     <div className="pagination">
       <RoundBtn
         onClick={() => pageSetter(0, -2)}
-        disabled={currPage + -2 <= 1}
+        disabled={currPage + -2 < 1}
         isSelected={false}
       >
         {doubleStepBack}

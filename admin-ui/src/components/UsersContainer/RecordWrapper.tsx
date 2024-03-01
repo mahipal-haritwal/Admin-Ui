@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Checkbox, DeleteBtn, EditBtn } from "../AppAtoms";
+import { Button, Checkbox, DeleteBtn, EditBtn, Flex, Input } from "../AppAtoms";
 import { UserCell, UserRow } from "../AppMolecules";
 import { User } from "../shared";
 
@@ -23,29 +23,18 @@ const RecordWrapper: FC<{
   }
 
   const content = isEditing ? (
-    <>
-      <input name="name" value={userForm?.name} onChange={onFormChange} />
-      <input name="email" value={userForm.email} onChange={onFormChange} />
-      <input name="role" value={userForm.role} onChange={onFormChange} />
-      <div className="flex">
-        <button
-          onClick={() => {
-            onUpdate(userForm);
-            setIsEditing(false);
-          }}
-        >
-          Save
-        </button>
-        <button
-          onClick={() => {
-            setIsEditing(false);
-            setUserForm(data);
-          }}
-        >
-          Cancel
-        </button>
-      </div>
-    </>
+    <UserForm
+      userForm={userForm}
+      onFormChange={onFormChange}
+      onCancel={() => {
+        setIsEditing(false);
+        setUserForm(data);
+      }}
+      onSave={() => {
+        onUpdate(userForm);
+        setIsEditing(false);
+      }}
+    />
   ) : (
     <>
       <UserCell val={name} />
@@ -63,6 +52,25 @@ const RecordWrapper: FC<{
       <Checkbox onChange={onSelectValue} checked={checked} value={id} />
       {content}
     </UserRow>
+  );
+};
+
+const UserForm: FC<{
+  userForm: User;
+  onFormChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSave: () => void;
+  onCancel: () => void;
+}> = ({ userForm, onFormChange, onCancel, onSave }) => {
+  return (
+    <>
+      <Input name="name" value={userForm?.name} onChange={onFormChange} />
+      <Input name="email" value={userForm.email} onChange={onFormChange} />
+      <Input name="role" value={userForm.role} onChange={onFormChange} />
+      <Flex>
+        <Button onClick={onSave} text="Save" />
+        <Button onClick={onCancel} text="Cancel" />
+      </Flex>
+    </>
   );
 };
 

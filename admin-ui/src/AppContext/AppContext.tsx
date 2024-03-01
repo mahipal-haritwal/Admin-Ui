@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import {
-  DeleteSelected,
+  Button,
   Flex,
   Pagination,
   SearchComponent,
@@ -150,14 +150,18 @@ const AppContext = () => {
         selectedRows: [], // reset selection
       };
     });
-
     setUsers(updatedUsers);
   }
 
   return (
     <AppContextP.Provider value={val}>
       <div
-        style={{ height: "100%", boxSizing: "border-box", overflow: "hidden" }}
+        style={{
+          height: "100%",
+          boxSizing: "border-box",
+          overflow: "hidden",
+          padding: "10px",
+        }}
       >
         <h3>Admin UI</h3>
         <SearchComponent onSearch={filterData} />
@@ -168,9 +172,10 @@ const AppContext = () => {
         />
 
         <Flex>
-          <DeleteSelected
+          <Button
             onClick={() => deleteSelected(val?.selectedRows)}
             disabled={val?.selectedRows?.length === 0}
+            text="Delete Selected"
           />
           <Pagination pages={val?.pages} pageSetter={pageSetter} />
         </Flex>

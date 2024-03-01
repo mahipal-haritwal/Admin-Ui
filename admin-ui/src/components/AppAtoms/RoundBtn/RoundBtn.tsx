@@ -6,13 +6,14 @@ const RoundBtn: FC<{
   children: any;
   isSelected: boolean;
   disabled: boolean;
-}> = ({ onClick, children, isSelected, disabled }) => {
-  const className = `round-btn ${isSelected ? "in-focus" : ""} ${
+  className?: string;
+}> = ({ onClick, children, isSelected, disabled, className }) => {
+  const btnClass = `round-btn ${className} ${isSelected ? "in-focus" : ""} ${
     disabled ? "disabled" : ""
   }`;
 
   return (
-    <button className={className.trim()} onClick={onClick}>
+    <button className={btnClass.trim()} onClick={onClick}>
       {children}
     </button>
   );

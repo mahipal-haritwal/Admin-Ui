@@ -41,8 +41,8 @@ const RecordWrapper: FC<{
       <UserCell val={email} />
       <UserCell val={role} />
       <div className="flex">
-        <EditBtn onClick={() => setIsEditing(true)} />
-        <DeleteBtn onClick={() => onDelete(id)} />
+        <EditBtn className="edit" onClick={() => setIsEditing(true)} />
+        <DeleteBtn className="delete" onClick={() => onDelete(id)} />
       </div>
     </>
   );
@@ -67,8 +67,8 @@ const UserForm: FC<{
       <Input name="email" value={userForm.email} onChange={onFormChange} />
       <Input name="role" value={userForm.role} onChange={onFormChange} />
       <Flex>
-        <Button onClick={onSave} text="Save" />
-        <Button onClick={onCancel} text="Cancel" />
+        <Button className="save" onClick={onSave} text="Save" />
+        <Button className="cancel" onClick={onCancel} text="Cancel" />
       </Flex>
     </>
   );

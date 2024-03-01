@@ -3,9 +3,11 @@ import "./Btn.css";
 
 const EditBtn: FC<{
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}> = ({ onClick }) => {
+  className?: string;
+}> = ({ onClick, className }) => {
+  const btnClass = `button ${className}`;
   return (
-    <button className="button" onClick={onClick}>
+    <button className={btnClass.trim()} onClick={onClick}>
       <span className="material-symbols-outlined">edit</span>
     </button>
   );

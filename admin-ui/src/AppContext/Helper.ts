@@ -21,3 +21,10 @@ export function pageData(pageNo: number, data: User[]) {
 
   return data.slice(startIndex, endIndex);
 }
+
+export function calculatePageNumbers(len: number) {
+  const maxPage = Math.ceil(len / 10);
+  const pageCounts = Array.from({ length: maxPage }, (_, i) => i + 1);
+
+  return pageCounts;
+}

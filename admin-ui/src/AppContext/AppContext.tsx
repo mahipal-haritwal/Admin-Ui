@@ -1,12 +1,14 @@
 import { createContext, useState, useEffect } from "react";
 import {
+  DeleteSelected,
+  Flex,
   Pagination,
   SearchComponent,
   User,
   UsersContainer,
 } from "../components";
 import axios from "axios";
-import { pageData, selectPage } from "./Helper";
+import { calculatePageNumbers, pageData, selectPage } from "./Helper";
 
 type ContextValuetype = {
   currPage: number;
@@ -80,16 +82,13 @@ const AppContext = () => {
         val.role.includes(str.toLowerCase())
     );
 
-    const maxPage = Math.ceil(data.length / 10);
-    const pageCounts = Array.from({ length: maxPage }, (_, i) => i + 1); // Generate page numbers
-
     setValue((prev) => ({
       ...prev,
-      data: pageData(1, data), // Update data to first page of filtered users
+      data: pageData(1, data),
       currPage: 1,
-      pages: pageCounts, // Update pages based on filtered data count
-      filteredUsers: data, // Update filtered users
-      isSearching: true, // Set searching flag
+      pages: calculatePageNumbers(data?.length),
+      filteredUsers: data,
+      isSearching: true,
     }));
   }
 
@@ -116,15 +115,43 @@ const AppContext = () => {
 
   function onDelete(id: string) {
     const filteredRecords = users.filter((val) => val?.id !== id);
+    const pages = calculatePageNumbers(filteredRecords.length);
+
+    const currPage = pages.includes(val?.currPage)
+      ? val?.currPage
+      : pages[pages.length - 1];
+
     setValue((prev) => {
       return {
         ...prev,
+        currPage: currPage,
         selectedRows: prev.selectedRows.filter((val) => val !== id),
         data: pageData(prev.currPage, filteredRecords),
       };
     });
 
     setUsers(filteredRecords);
+  }
+
+  function deleteSelected(rows: string[]) {
+    const updatedUsers = users.filter((val) => !rows?.includes(val?.id));
+
+    const pages = calculatePageNumbers(updatedUsers.length);
+
+    const currPage = pages.includes(val?.currPage)
+      ? val?.currPage
+      : pages[pages.length - 1];
+
+    setValue((prev) => {
+      return {
+        ...prev,
+        data: pageData(currPage, updatedUsers),
+        pages: pages,
+        selectedRows: [], // reset selection
+      };
+    });
+
+    setUsers(updatedUsers);
   }
 
   return (
@@ -139,7 +166,14 @@ const AppContext = () => {
           onDelete={onDelete}
           onUpdate={onUpdate}
         />
-        <Pagination pages={val?.pages} pageSetter={pageSetter} />
+
+        <Flex>
+          <DeleteSelected
+            onClick={() => deleteSelected(val?.selectedRows)}
+            disabled={val?.selectedRows?.length === 0}
+          />
+          <Pagination pages={val?.pages} pageSetter={pageSetter} />
+        </Flex>
       </div>
     </AppContextP.Provider>
   );

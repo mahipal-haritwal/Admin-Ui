@@ -12,9 +12,9 @@ const RoundBtn: FC<{
   }`;
 
   return (
-    <div className={className.trim()} onClick={onClick}>
+    <button className={className.trim()} onClick={onClick}>
       {children}
-    </div>
+    </button>
   );
 };
 

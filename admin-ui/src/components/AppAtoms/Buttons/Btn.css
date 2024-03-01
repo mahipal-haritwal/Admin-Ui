@@ -1,7 +1,30 @@
 .button {
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 .button :hover {
   color: red;
+}
+
+.delete-selected {
+  cursor: pointer;
+  border: none;
+  background-color: red;
+  color: white;
+  height: 30px;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.delete-selected:hover {
+  opacity: 0.9;
+}
+
+.disabled {
+  border: 1px solid rgb(144, 144, 144);
+  color: grey;
+  background-color: rgb(222, 222, 222);
+  cursor: not-allowed;
 }
